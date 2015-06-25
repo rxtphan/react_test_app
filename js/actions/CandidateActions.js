@@ -3,12 +3,7 @@ var alt = require('../alt')
 class CandidateActions {
   constructor() {
     this.generateActions(
-      'create',
-      'updateText',
-      'toggleComplete',
-      'toggleCompleteAll',
-      'destroy',
-      'destroyCompleted'
+      'endorse'
     )
   }
 }

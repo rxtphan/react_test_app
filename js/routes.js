@@ -8,6 +8,6 @@ var CandidateProfile = require('./components/CandidateProfile.react');
 module.exports = [
   <Route path="/" handler={PoliticsApp}>
   	<DefaultRoute handler={CandidateList}/>
-    <Route path="candidate/:id" handler={CandidateProfile}/>
+    <Route name ="candidate" path="candidate/:id" handler={CandidateProfile}/>
   </Route>
 ];

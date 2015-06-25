@@ -10,7 +10,7 @@ var CandidateListItem = React.createClass({
         className="candidate-list-item"
         key={candidate.id}>
         <Link
-          to='/candidate/:id'
+          to='candidate'
           params={{id: candidate.id}}>
           <img
             src={candidate.pic}

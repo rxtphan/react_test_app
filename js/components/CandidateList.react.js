@@ -4,7 +4,6 @@ var CandidateActions = require('../actions/CandidateActions');
 var CandidateListItem = require('./CandidateListItem.react');
 var FluxyMixin = require('../../node_modules/alt/mixins/FluxyMixin.js');
 
-
 function getCandidateState() {
   return CandidateStore.getState()
 }

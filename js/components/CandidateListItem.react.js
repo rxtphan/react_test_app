@@ -8,12 +8,15 @@ var CandidateListItem = React.createClass({
       <li
         className="candidate-list-item"
         key={candidate.id}>
-        <img
-          src={candidate.pic}
-        />
-        <div>
-          {candidate.name}
-        </div>
+        <a
+          href={'candidate/' + candidate.id}>
+          <img
+            src={candidate.pic}
+          />
+          <div>
+            {candidate.name}
+          </div>
+        </a>
       </li>
     );
   }

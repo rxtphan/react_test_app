@@ -1,5 +1,3 @@
-require('node-jsx').install({harmony: true});
-
 var express = require('express'),
     mustacheExpress = require('mustache-express'),
     React = require('react'),

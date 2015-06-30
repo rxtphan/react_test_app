@@ -4,9 +4,8 @@ var express = require('express'),
     alt = require('./js/alt'),
     Iso = require('iso'),
     Router = require('react-router'),
-    Promise = require('promise'),
-    objectAssign = require('object-assign'),
     routes = require('./js/routes'),
+    fetcher = require('./fetcher'),
     api = require('./api');
 
 var app = express();
@@ -27,28 +26,9 @@ app.use(function(req, res, next) {
 
   	var router = Router.create({location: req.url, routes: routes});
 	  router.run(function(Handler, state) {
-      
-      var data = {};
-
-      var routesWithFetchData = state.routes.filter(function (route) {
-        return route.handler.fetchData
-      });
-
-      var allFetchDataPromises = routesWithFetchData.map(function (route) {
-        return route.handler.fetchData(state.params).then(function (routeData) {
-          data[route.name] = routeData;
-        });
-      });
-
-      Promise.all(allFetchDataPromises).then(function() {
-        console.log('server done fetching', data);
-        var mergedData = {};
-        for (var routeData in data) {
-          objectAssign(mergedData, data[routeData]);
-        }
-
+       fetcher.fetch(state, function (data) {
         alt.bootstrap(
-          JSON.stringify(mergedData)
+          JSON.stringify(data)
         );
 
         //console.log('rendering to string on server')

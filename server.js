@@ -1,12 +1,13 @@
-var express = require('express'),
+var config = require('./app/lib/config'),
+    express = require('express'),
     mustacheExpress = require('mustache-express'),
     React = require('react'),
-    alt = require('./js/alt'),
+    alt = require('./app/lib/alt'),
     Iso = require('iso'),
     Router = require('react-router'),
-    routes = require('./js/routes'),
-    fetcher = require('./fetcher'),
-    api = require('./api');
+    routes = require('./routes'),
+    fetcher = require('./app/lib/fetcher'),
+    api = require('./app/lib/api');
 
 var app = express();
 
@@ -35,13 +36,11 @@ app.use(function(req, res, next) {
         var html = React.renderToString(<Handler/>);
         iso.add(html, alt.flush());
 
-        return res.render(__dirname + '/index', {html: iso.render()});
+        return res.render(__dirname + '/main', {html: iso.render()});
       });
 	  });	
 });
 
-var server = app.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('Example app listening at http://%s:%s', host, port);
+var server = app.listen(config.serverPort, function () {
+  console.log('Example app listening at %s:%s', config.baseUrl, config.serverPort);
 });

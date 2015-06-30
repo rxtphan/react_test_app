@@ -2,14 +2,15 @@ var React = require('react'),
     CandidateActions = require('../actions/CandidateActions'),
     CandidateStore = require('../stores/CandidateStore'),
     Promise = require('promise'),
-    request = require('superagent');
+    request = require('superagent'),
+    config = require('../lib/config');
 
 var CandidateProfile = React.createClass({
   statics: {
     fetchData: function (params) {
       return new Promise(function (resolve, reject) {
         request
-          .get('http://localhost:3000/api/candidate/' + params.id)
+          .get(config.baseUrl + ':' + config.serverPort + '/api/candidate/' + params.id)
           .end(function (err, res) {
             var candidate = res.body;
             resolve({'CandidateStore': candidate});

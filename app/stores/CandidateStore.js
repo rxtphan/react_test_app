@@ -1,4 +1,4 @@
-var alt = require('../alt')
+var alt = require('../lib/alt')
 var objectAssign = require('object-assign')
 
 var DataFetchActions = require('../actions/DataFetchActions')

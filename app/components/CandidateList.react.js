@@ -5,6 +5,7 @@ var CandidateListItem = require('./CandidateListItem.react');
 var FluxyMixin = require('../../node_modules/alt/mixins/FluxyMixin.js');
 var {Link} = require('react-router');
 var request = require('superagent');
+var config = require('../lib/config');
 
 function getCandidateState() {
   return CandidateStore.getState()
@@ -17,7 +18,7 @@ var CandidateList = React.createClass({
     fetchData: function () {
       return new Promise(function (resolve, reject) {
         request
-          .get('http://localhost:3000/api/candidate/all')
+          .get(config.baseUrl + ':' + config.serverPort + '/api/candidate/all')
           .end(function (err, res) {
             var candidates = res.body
             resolve({'CandidateStore': candidates});

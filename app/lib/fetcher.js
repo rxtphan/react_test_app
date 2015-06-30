@@ -1,4 +1,4 @@
-var routes = require('./js/routes'),
+var routes = require('../../routes'),
     Promise = require('promise'),
     objectAssign = require('object-assign');
 
@@ -17,7 +17,6 @@ var fetcher = {
     });
 
     Promise.all(allFetchDataPromises).then(function() {
-      console.log('server done fetching', data);
       var mergedData = {};
       for (var routeData in data) {
         objectAssign(mergedData, data[routeData]);

@@ -1,14 +1,13 @@
 var React = require('react'),
+    alt = require('./app/lib/alt'),
     Router = require('react-router'),
     Iso = require('iso'),
     Handler = Router.Handler,
     Promise = require('Promise'),
     objectAssign = require('object-assign'),
     routes = require('./routes'),
-    fetcher = require('../fetcher'),
-    DataFetchActions = require('./actions/DataFetchActions');
-
-window.alt = require('./alt');
+    fetcher = require('./app/lib/fetcher'),
+    DataFetchActions = require('./app/actions/DataFetchActions');
 
 function isEmpty(object) {
   for(var i in object) {
@@ -18,7 +17,7 @@ function isEmpty(object) {
 }
 
 Iso.bootstrap(function (state, _, container) {
-  window.alt.bootstrap(state);
+  alt.bootstrap(state);
 
   Router.run(routes, Router.HistoryLocation, function (Handler, state) {
     fetcher.fetch(state, function (data) {

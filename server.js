@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
       });
 
       Promise.all(allFetchDataPromises).then(function() {
-        console.log('done fetching', data);
+        console.log('server done fetching', data);
         var mergedData = {};
         for (var routeData in data) {
           objectAssign(mergedData, data[routeData]);
@@ -50,11 +50,11 @@ app.use(function(req, res, next) {
         alt.bootstrap(
           JSON.stringify(mergedData)
         );
-        console.log('alt snapshot:', alt.takeSnapshot());
+
         //console.log('rendering to string on server')
         var html = React.renderToString(<Handler/>);
         iso.add(html, alt.flush());
-        //console.log('rendered html', html)
+
         return res.render(__dirname + '/index', {html: iso.render()});
       });
 	  });	

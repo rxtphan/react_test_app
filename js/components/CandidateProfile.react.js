@@ -9,7 +9,7 @@ var CandidateProfile = React.createClass({
     fetchData: function (params) {
       return new Promise(function (resolve, reject) {
         request
-          .get('localhost:3000/api/candidate/' + params.id)
+          .get('http://localhost:3000/api/candidate/' + params.id)
           .end(function (err, res) {
             var candidate = res.body;
             resolve({'CandidateStore': candidate});
@@ -21,7 +21,6 @@ var CandidateProfile = React.createClass({
   getInitialState: function () {
     var id = this.props.params.id;
     var allCandidates = CandidateStore.getState().candidates;
-    console.log('allCandidates', allCandidates);
     return { candidate: allCandidates[id] };
   },
 

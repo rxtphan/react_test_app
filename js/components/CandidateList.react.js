@@ -3,6 +3,7 @@ var CandidateStore = require('../stores/CandidateStore');
 var CandidateActions = require('../actions/CandidateActions');
 var CandidateListItem = require('./CandidateListItem.react');
 var FluxyMixin = require('../../node_modules/alt/mixins/FluxyMixin.js');
+var {Link} = require('react-router');
 var request = require('superagent');
 
 function getCandidateState() {
@@ -16,7 +17,7 @@ var CandidateList = React.createClass({
     fetchData: function () {
       return new Promise(function (resolve, reject) {
         request
-          .get('localhost:3000/api/candidate/all')
+          .get('http://localhost:3000/api/candidate/all')
           .end(function (err, res) {
             var candidates = res.body
             resolve({'CandidateStore': candidates});
@@ -49,7 +50,16 @@ var CandidateList = React.createClass({
     }
 
     return (
-      <ul id="candidate-list">{candidateListItems}</ul>
+      <div>
+        <ul id="candidate-list">{candidateListItems}</ul>
+        <Link
+          to='candidate'
+          params={{id: 3}}>
+          <div>
+            {'Fake link'}
+          </div>
+        </Link>
+      </div>
     );
   },
 

@@ -8,7 +8,7 @@ var CandidateListItem = React.createClass({
     return (
       <li
         className="candidate-list-item"
-        key={candidate.id}>
+        key={this.props.key}>
         <Link
           to='candidate'
           params={{id: candidate.id}}>

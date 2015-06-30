@@ -23,9 +23,11 @@
     "mustache-express": "^1.2.1",
     "node-jsx": "^0.13.3",
     "object-assign": "^3.0.0",
+    "promise": "^7.0.3",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "reactify": "^1.1.1",
+    "superagent": "^1.2.0",
     "watchify": "^3.2.3"
   },
   "browserify": {

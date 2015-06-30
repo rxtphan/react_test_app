@@ -1,5 +1,5 @@
-var candidates = [
-  {
+var candidates = {
+  1: {
     id: 1,
     name: 'Jeb Bush',
     pic: '/images/jebbush.jpg',
@@ -7,21 +7,28 @@ var candidates = [
     twitterUrl: 'https://twitter.com/jebbush',
     websiteUrl: 'https://jeb2016.com/'
   },
-  {
+  2: {
     id: 2,
     name: 'Ted Cruz',
     pic: '/images/tedcruz.jpg'
   },
-  {
+  3: {
     id: 3,
     name: 'Donald Trump',
     pic: '/images/donaldtrump.jpg'
   }
-]
+}
 
 var api = {
-  getAllCandidates: function (cb) {
-    cb(candidates);
+  'candidate': function (id, cb) {
+    if (id === 'all')  {
+      cb({ candidates: candidates });
+      return;
+    }
+
+    var retObj = {};
+    retObj[id] = candidates[id];
+    cb({ candidates: retObj });
   }
 }
 

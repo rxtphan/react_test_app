@@ -1,19 +1,28 @@
-var React = require('react');
-var CandidateActions = require('../actions/CandidateActions');
-var CandidateStore = require('../stores/CandidateStore');
+var React = require('react'),
+    CandidateActions = require('../actions/CandidateActions'),
+    CandidateStore = require('../stores/CandidateStore'),
+    Promise = require('promise'),
+    request = require('superagent');
 
 var CandidateProfile = React.createClass({
+  statics: {
+    fetchData: function (params) {
+      return new Promise(function (resolve, reject) {
+        request
+          .get('localhost:3000/api/candidate/' + params.id)
+          .end(function (err, res) {
+            var candidate = res.body;
+            resolve({'CandidateStore': candidate});
+        });
+      });
+    }
+  },
 
   getInitialState: function () {
     var id = this.props.params.id;
     var allCandidates = CandidateStore.getState().candidates;
-
-    for (var i = 0; i < allCandidates.length; i++) {
-      if (allCandidates[i].id == id) {
-       return { candidate: allCandidates[i] };
-        continue;
-      }
-    }
+    console.log('allCandidates', allCandidates);
+    return { candidate: allCandidates[id] };
   },
 
   componentDidMount: function () {

@@ -7,7 +7,7 @@ var CandidateProfile = require('./components/CandidateProfile.react');
 // declare our routes and their hierarchy
 module.exports = [
   <Route path="/" handler={PoliticsApp}>
-  	<DefaultRoute handler={CandidateList}/>
+  	<DefaultRoute name ="candidatelist" handler={CandidateList}/>
     <Route name ="candidate" path="candidate/:id" handler={CandidateProfile}/>
   </Route>
 ];

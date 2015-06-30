@@ -4,6 +4,8 @@ var Iso = require('iso');
 var Handler = Router.Handler;
 var routes = require('./routes');
 
+window.request = require('superagent');
+
 window.alt = require('./alt');
 
 Iso.bootstrap(function (state, _, container) {
